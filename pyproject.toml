@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "testjob_tetrika"
+version = "0.1.0"
+description = ""
+authors = ["Aleksandr Vinogradov <lvar-8@ya.ru>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+bs4 = "^0.0.1"
+requests = "^2.28.1"
+lxml = "^4.9.1"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pyright]
+pythonVersion = "3.10.5"
+pythonPlatform = "Linux"
+venv = "testjob-tetrika-MO-6mjYS-py3.10"
+venvPath = "/home/alx/.cache/pypoetry/virtualenvs"
+exclude = [
+    "**/node_modules",
+    "**/__pycache__",
+    ".git",
+]
