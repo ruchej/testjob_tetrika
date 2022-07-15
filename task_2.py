@@ -1,5 +1,7 @@
 import requests
 import json
+import time
+
 from bs4 import BeautifulSoup
 from typing import Dict, List
 
@@ -30,7 +32,7 @@ def parsing_one_group(url: str) -> Dict[str, list[str]]:
     animals = {letter: []}
     while letter == group.find('h3').text:
         animals_list = group.find('ul').find_all('li')
-        print(f'Парсим категорию {letter}')
+        print(f'\rПарсим категорию {letter}', end='')
         for animal in animals_list:
             animals[letter].append(animal.text)
         link_next_page_obj = soup.find('a', text='Следующая страница')
@@ -57,7 +59,11 @@ def get_animals(url: str, abc: set) -> Dict[str, str]:
 
 
 if __name__ == '__main__':
+    start_time = time.time()
     animals = get_animals(URL, ALPHABET)
+    end_time = time.time() - start_time
+    print(f'\nВремя выполнения парсинга {end_time} сек.')
+
     with open('animals.json', 'w', encoding='utf8') as f:
         json.dump(animals, f, indent=2, ensure_ascii=False)
 
