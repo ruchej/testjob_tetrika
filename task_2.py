@@ -8,7 +8,7 @@ URL = 'https://ru.wikipedia.org/w/index.php?title=Категория:Живот�
 ALPHABET = set('абвгдеёжзийклмнопрстуфхцчшщъыьэюя')
 
 
-def gen_urls_abc(url: str, abc: str) -> List[str]:
+def gen_urls_abc(url: str, abc: set) -> List[str]:
     '''Сгенерировать ссылки начальных страниц по алфавиту'''
     links = []
     for letter in abc:
@@ -43,7 +43,7 @@ def parsing_one_group(url: str) -> Dict[str, list[str]]:
     return animals
 
 
-def get_animals(url: str, abc: str) -> Dict[str, str]:
+def get_animals(url: str, abc: set) -> Dict[str, str]:
     '''
     Получить список животных согласно алфавита abc.
     Вернуть словарь с животными
@@ -57,7 +57,7 @@ def get_animals(url: str, abc: str) -> Dict[str, str]:
 
 
 if __name__ == '__main__':
-    animals = get_animals(URL, 'аб')
+    animals = get_animals(URL, ALPHABET)
     with open('animals.json', 'w', encoding='utf8') as f:
         json.dump(animals, f, indent=2, ensure_ascii=False)
 
